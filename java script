@@ -1,0 +1,84 @@
+document.addEventListener('DOMContentLoaded', () => {
+  const card = document.querySelector('.card');
+
+  // 1. Efek 3D Tilt saat kursor mengarah ke kartu
+  card.addEventListener('mousemove', (e) => {
+    const rect = card.getBoundingClientRect();
+    const x = e.clientX - rect.left - rect.width / 2;
+    const y = e.clientY - rect.top - rect.height / 2;
+
+    const tiltX = (y / (rect.height / 2)) * -12;
+    const tiltY = (x / (rect.width / 2)) * 12;
+
+    card.style.transform = `perspective(1000px) rotateX(${tiltX}deg) rotateY(${tiltY}deg) translateY(-8px) scale(1.02)`;
+  });
+
+  card.addEventListener('mouseleave', () => {
+    card.style.transform = `perspective(1000px) rotateX(0deg) rotateY(0deg) translateY(0px) scale(1)`;
+  });
+
+  // 2. Efek Bintang/Sparkle Lucu saat Klik di Dalam Kartu
+  card.addEventListener('click', (e) => {
+    const shapes = ['✨', '💖', '⭐', '🌸', '🚀'];
+    const totalParticles = 8;
+
+    for (let i = 0; i < totalParticles; i++) {
+      const particle = document.createElement('span');
+      particle.innerText = shapes[Math.floor(Math.random() * shapes.length)];
+      
+      // Styling dinamis partikel
+      Object.assign(particle.style, {
+        position: 'fixed',
+        left: `${e.clientX}px`,
+        top: `${e.clientY}px`,
+        pointerEvents: 'none',
+        fontSize: `${Math.random() * 16 + 12}px`,
+        zIndex: '9999',
+        transition: 'transform 0.8s cubic-bezier(0.1, 0.8, 0.3, 1), opacity 0.8s',
+        opacity: '1'
+      });
+
+      document.body.appendChild(particle);
+
+      // Hitung arah ledakan partikel secara acak
+      const angle = Math.random() * Math.PI * 2;
+      const distance = Math.random() * 60 + 30;
+      const x = Math.cos(angle) * distance;
+      const y = Math.sin(angle) * distance;
+
+      // Animasikan partikel
+      requestAnimationFrame(() => {
+        particle.style.transform = `translate(${x}px, ${y}px) scale(0)`;
+        particle.style.opacity = '0';
+      });
+
+      // Hapus elemen setelah animasi selesai
+      setTimeout(() => particle.remove(), 800);
+    }
+  });
+
+  // 3. Efek Ketikan (Typing Effect) untuk Subtitle
+  const subtitle = document.querySelector('.subtitle');
+  if (subtitle) {
+    const text = subtitle.innerText;
+    subtitle.innerText = '';
+    let i = 0;
+
+    function typeWriter() {
+      if (i < text.length) {
+        subtitle.innerText += text.charAt(i);
+        i++;
+        setTimeout(typeWriter, 50);
+      }
+    }
+    typeWriter();
+  }
+});
+Tambahan Sedikit CSS (Agar Efek 3D Maksimal)
+Tambahkan properti transition halus ini ke bagian .card pada file CSS Anda jika belum ada:
+
+CSS
+.card {
+  transition: transform 0.15s ease-out;
+  transform-style: preserve-3d;
+}
