@@ -1,0 +1,131 @@
+body {
+  background-color: #ffeef2;
+  background-image: 
+    radial-gradient(#ffb6c1 15%, transparent 16%),
+    radial-gradient(#ffb6c1 15%, transparent 16%);
+  background-size: 60px 60px;
+  background-position: 0 0, 30px 30px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-height: 100vh;
+  margin: 0;
+  font-family: 'Fredoka', cursive, sans-serif;
+  overflow: hidden;
+}
+
+/* Kartu Utama */
+.card {
+  background: #ffffff;
+  border: 4px solid #ffb6c1;
+  border-radius: 30px;
+  padding: 40px 30px;
+  text-align: center;
+  box-shadow: 0 15px 0px #ffcad4, 0 25px 30px rgba(255, 182, 193, 0.4);
+  max-width: 380px;
+  width: 90%;
+  position: relative;
+  cursor: pointer;
+  user-select: none;
+  
+  /* Transisi & Transformasi 3D untuk JavaScript Tilt */
+  transition: transform 0.15s ease-out;
+  transform-style: preserve-3d;
+  animation: float 4s ease-in-out infinite;
+}
+
+/* Badge ✨ BNCC GitReady 2.0 ✨ */
+.badge {
+  display: inline-block;
+  background: #ffdde1;
+  color: #ff4b72;
+  font-weight: 700;
+  font-size: 0.9rem;
+  padding: 8px 18px;
+  border-radius: 50px;
+  border: 2px dashed #ff8fa3;
+  margin-bottom: 20px;
+  letter-spacing: 0.5px;
+}
+
+/* Judul Teks "Welcome to" */
+.welcome-text {
+  font-size: 2.2rem;
+  color: #555555;
+  margin: 10px 0 15px 0;
+  line-height: 1.3;
+}
+
+/* Animasi Bouncing untuk setiap huruf */
+.welcome-text span {
+  display: inline-block;
+  transition: transform 0.2s;
+}
+
+.welcome-text span:nth-child(odd) {
+  animation: bounce 2s infinite ease-in-out alternate;
+}
+
+.welcome-text span:nth-child(even) {
+  animation: bounce 2s infinite ease-in-out alternate 0.3s;
+}
+
+/* Highlight "AUL Trio" */
+.highlight {
+  color: #ff5e7e;
+  background: linear-gradient(120deg, #a1c4fd 0%, #c2e9fb 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  font-size: 2.5rem;
+  font-weight: 700;
+  display: block !important;
+  margin-top: 5px;
+  text-shadow: 2px 2px 0px #fff;
+}
+
+/* Animasi Emoji Roket 🚀 */
+.emoji {
+  display: inline-block !important;
+  animation: rocket 1.5s infinite alternate ease-in-out;
+}
+
+/* Subtitle */
+.subtitle {
+  color: #888888;
+  font-size: 0.95rem;
+  font-weight: 600;
+  margin: 0;
+  background: #f0f3ff;
+  padding: 8px 15px;
+  border-radius: 12px;
+  display: inline-block;
+  min-height: 20px;
+}
+
+/* Keyframes Animasi */
+@keyframes float {
+  0%, 100% {
+    transform: translateY(0px);
+  }
+  50% {
+    transform: translateY(-12px);
+  }
+}
+
+@keyframes bounce {
+  0% {
+    transform: translateY(0);
+  }
+  100% {
+    transform: translateY(-6px) rotate(3deg);
+  }
+}
+
+@keyframes rocket {
+  0% {
+    transform: translateY(0) scale(1);
+  }
+  100% {
+    transform: translateY(-10px) scale(1.2) rotate(10deg);
+  }
+}
